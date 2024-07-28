@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "195846781050",
+    "project_id": "flutter-fire-my-notes",
+    "storage_bucket": "flutter-fire-my-notes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195846781050:android:bb6a46ee941320670663c3",
+        "android_client_info": {
+          "package_name": "com.devahmad.flutterapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl8XrA9f99YDT9WgxaxLnwMTja4w8WQIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

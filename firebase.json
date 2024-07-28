@@ -1,0 +1,22 @@
+{
+    "flutter":{
+        "platforms":{
+            "android":{
+                "default":{
+                    "projectId":"flutter-fire-my-notes",
+                    "appId":"1:195846781050:android:bb6a46ee941320670663c3",
+                    "fileOutput":"android/app/google-services.json"
+                }
+            },
+            "dart":{
+                "lib/firebase_options.dart":{
+                    "projectId":"flutter-fire-my-notes",
+                    "configurations":{
+                        "android":"1:195846781050:android:bb6a46ee941320670663c3",
+                        "ios":"1:195846781050:ios:95a54b83129290f10663c3"
+                    }
+                }
+            }
+        }
+    }
+}
