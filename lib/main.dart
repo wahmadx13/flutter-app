@@ -87,6 +87,8 @@ class _RegisterViewState extends State<RegisterView> {
                           print('Week Password');
                         } else if (err.code == 'email-already-in-use') {
                           print('Email is already in use');
+                        } else if (err.code == 'invalid-email') {
+                          print('Please provide a valid email');
                         }
                       }
                     },
