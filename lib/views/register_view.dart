@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/constants/routes.dart';
+import 'package:flutterapp/services/auth/auth_exceptions.dart';
+import 'package:flutterapp/services/auth/auth_service.dart';
 import 'package:flutterapp/utilities/show_error_dialog.dart';
 
 class RegisterView extends StatefulWidget {
@@ -58,41 +59,34 @@ class _RegisterViewState extends State<RegisterView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                await AuthService.firebase().createUser(
                   email: email,
                   password: password,
                 );
-                final user = FirebaseAuth.instance.currentUser;
-                user?.sendEmailVerification();
+                AuthService.firebase().sendEmailVerification();
+
                 Navigator.of(context).pushNamed(
                   verifyEmailRoute,
                 );
-              } on FirebaseAuthException catch (err) {
-                if (err.code == 'weak-password') {
-                  await showErrorDialog(
-                    context,
-                    'Week Password',
-                  );
-                } else if (err.code == 'email-already-in-use') {
-                  await showErrorDialog(
-                    context,
-                    'Email already in use',
-                  );
-                } else if (err.code == 'invalid-email') {
-                  await showErrorDialog(
-                    context,
-                    'Please provide a valid email address',
-                  );
-                } else {
-                  await showErrorDialog(
-                    context,
-                    'Error: ${err.code}',
-                  );
-                }
-              } catch (err) {
+              } on WeakPasswordAuthException {
                 await showErrorDialog(
                   context,
-                  err.toString(),
+                  'Week Password',
+                );
+              } on EmailAlreadyInUseAuthException {
+                await showErrorDialog(
+                  context,
+                  'Email already in use',
+                );
+              } on InvalidEmailAuthException {
+                await showErrorDialog(
+                  context,
+                  'Please provide a valid email address',
+                );
+              } on GenericAuthExceptions {
+                await showErrorDialog(
+                  context,
+                  "An Error Occurred while creating user",
                 );
               }
             },
