@@ -44,6 +44,13 @@ void main() {
       expect(provider.currentUser, user);
       expect(user.isEmailVerified, false);
     });
+
+    test('Logged in user should be able to get verified', () {
+      provider.sendEmailVerification();
+      final user = provider.currentUser;
+      expect(user, isNotNaN);
+      expect(user!.isEmailVerified, true);
+    });
   });
 }
 
