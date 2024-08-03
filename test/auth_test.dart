@@ -32,10 +32,17 @@ void main() {
     }, timeout: const Timeout(Duration(seconds: 2)));
 
     test('Create user should delegate to login function', () async {
-      final badEmailUser =
-          provider.createUser(email: 'foo@bar.com', password: 'abc123');
-      expect(badEmailUser,
+      final badPasswordUser =
+          provider.createUser(email: 'someone@example.com', password: 'foobar');
+      expect(badPasswordUser,
           throwsA(const TypeMatcher<InvalidCredentialsAuthException>()));
+
+      final user = await provider.createUser(
+        email: 'foo',
+        password: 'bar',
+      );
+      expect(provider.currentUser, user);
+      expect(user.isEmailVerified, false);
     });
   });
 }
