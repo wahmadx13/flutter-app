@@ -30,6 +30,13 @@ void main() {
     test('Should be able to initialize in less than 2 seconds', () async {
       await provider.initialize();
     }, timeout: const Timeout(Duration(seconds: 2)));
+
+    test('Create user should delegate to login function', () async {
+      final badEmailUser =
+          provider.createUser(email: 'foo@bar.com', password: 'abc123');
+      expect(badEmailUser,
+          throwsA(const TypeMatcher<InvalidCredentialsAuthException>()));
+    });
   });
 }
 
