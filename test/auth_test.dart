@@ -26,6 +26,10 @@ void main() {
     test('User should be null after initialization', () {
       expect(provider.currentUser, null);
     });
+
+    test('Should be able to initialize in less than 2 seconds', () async {
+      await provider.initialize();
+    }, timeout: const Timeout(Duration(seconds: 2)));
   });
 }
 
